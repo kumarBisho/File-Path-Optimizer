@@ -18,7 +18,7 @@
             const path = document.getElementById('pathInput').value;
             const resultDiv = document.getElementById('result');
             resultDiv.innerText = 'Processing...';
-            fetch('http://localhost:8080/simplify', {
+            fetch('https://file-path-optimizer.onrender.com/simplify', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ path: path })
