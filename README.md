@@ -1,5 +1,8 @@
 # Simplify Unix-Style Absolute Path
 
+## Live Demo
+[Open the live App here](https://file-path-optimizer-1.onrender.com)
+
 ## Problem Description
 Given a string `A` representing an absolute path for a file (Unix-style).
 return the string after simplifying the absolute path.
