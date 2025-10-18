@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Directory Path Simplifier</title>
+    <style>
+        body { font-family: Arial; margin: 40px; }
+        input, button { font-size: 1em; padding: 8px; }
+        #result { margin-top: 20px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h2>Simplify Directory Path</h2>
+    <input type="text" id="pathInput" placeholder="Enter directory path" size="40">
+    <button onclick="simplifyPath()">Simplify</button>
+    <div id="result"></div>
+    <script>
+        function simplifyPath() {
+            const path = document.getElementById('pathInput').value;
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerText = 'Processing...';
+            fetch('http://localhost:8080/simplify', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ path: path })
+            })
+            .then(async response => {
+                let data;
+                try {
+                    data = await response.json();
+                } catch (e) {
+                    resultDiv.innerText = 'Invalid response from server.';
+                    return;
+                }
+                if (response.ok && data.simplified !== undefined) {
+                    resultDiv.innerText = "Simplified Path: " + data.simplified;
+                } else if (data.error) {
+                    resultDiv.innerText = "Error: " + data.error;
+                } else {
+                    resultDiv.innerText = 'Unknown error.';
+                }
+            })
+            .catch(() => {
+                resultDiv.innerText = "Could not connect to backend server.";
+            });
+        }
+    </script>
+</body>
+</html>
