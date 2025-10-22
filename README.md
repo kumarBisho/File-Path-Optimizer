@@ -7,7 +7,7 @@
 Given a string `A` representing an absolute path for a file (Unix-style).
 return the string after simplifying the absolute path.
 
-## Problem Osutput
+## Problem Output
 Simplified absolute path of given large input file path.
 
 ### Notes
